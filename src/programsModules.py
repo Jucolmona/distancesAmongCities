@@ -20,8 +20,13 @@ def listCities(gc):
     for i in range(1, len(gc.nodes) + 1):
         print(gc.nodes[i]['name'])
 
-def listDistances():
-    pass
+def listDistances(gc):
+    for i, neis in gc.adj.items():
+        for nei in neis:
+            message = "{node1:<5} {node2:>15} {distance}".format(node1 = gc.nodes[i]['name'],
+                                                    node2 = gc.nodes[nei]['name'],
+                                                    distance = neis[nei][0]['weight'])
+            print(message)
 
 def getCity():
     pass

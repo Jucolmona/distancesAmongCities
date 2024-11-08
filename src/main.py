@@ -12,4 +12,12 @@ if __name__ == '__main__':
 
     citiesGraph = createGrahpCities(citiesList, distancesList)
     listCities(citiesGraph)
+    listDistances(citiesGraph)
+
+
+
+    
+    
+ 
+
 
