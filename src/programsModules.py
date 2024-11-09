@@ -17,8 +17,11 @@ def listCities(gc):
     :param gc: graph object that represent the cities
     :return: list which names of cities.
     """
+    tmpList = []
     for i in range(1, len(gc.nodes) + 1):
-        print(gc.nodes[i]['name'])
+        #print(gc.nodes[i]['name'])
+        tmpList.append(gc.nodes[i]['name'])
+    return tmpList
 
 def listDistances(gc):
     for i, neis in gc.adj.items():

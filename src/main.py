@@ -1,4 +1,5 @@
 from programsModules import *
+from graphicInterface import *
 
 if __name__ == '__main__':
     citiesList = [(1, {"name":"Medellin"}), (2, {"name":"Puerto Berrio"}),
@@ -10,8 +11,11 @@ if __name__ == '__main__':
                      (6, 7, 66), (7, 8, 133)
     ]
 
+    mainWindow = createMainWindow()
+
     citiesGraph = createGrahpCities(citiesList, distancesList)
-    listCities(citiesGraph)
+    l = listCities(citiesGraph)
+    deployAListOfCities(mainWindow, l)
     listDistances(citiesGraph)
 
 
