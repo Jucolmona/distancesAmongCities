@@ -6,20 +6,31 @@ import networkx as nx
 def createMainWindow():
     mainWindows = Tk()
     mainWindows.geometry("1000x500")
-    mainWindowsFrame = Frame(mainWindows) #, bg='blue')
-    #mainWindowsFrame.pack(fill= BOTH, expand= True, padx= 25, pady=25)
-    return mainWindowsFrame
+    return mainWindows
 
-def implementingLabel(mw, r, c, data):
+"""
+The following function use the instance of Tk() class created on previous function. 
+Therefore, the next functions both add Tk widgets and change the properties of this 
+instancia returned for function previusly created.
+"""
+def implementingFrame(mw:Tk, options:dict):
     """
-    :param r: row of grid object inside of label
-    :param c: column of grid object inside of label
-    :param mw: object-type Frame of Tkinter library. Represent the main windows of aplication graphic application
+    :param mw: root window, where frame will be placed
+    :param options: dict of diferent options to custom the frame
+    :return: Custom frame placed on main window.
+    """
+    frameTmp = Frame(mw, bg = options["bgC"], height=options["h"], width=options["w"])
+    return frameTmp
+#...................................................................................................
+def implementingLabel(f, options:dict):
+    """
+    :param f: object-type Frame of Tkinter library. Represent the secundary windows
+            of aplication graphic application
     :return: a widget that is integrated in the main windows
     """
-    #firtsLabel = Label(mainWindowsFrame,)
-    firtsLabel = Label(mw, text=data , width=300,height=5).grid(row=r, column=c)
-    return firtsLabel
+    labelTmp = Label(f, text="Nombre Ciudades" , height=options["h"] ,width=options["w"])
+    return labelTmp
+#...................................................................................................
 def deployAListOfCities(mw, gc):
     """
 
@@ -37,6 +48,14 @@ def deployAListOfCities(mw, gc):
 
 #Label(mainWindowsFrame, text="Fila 1 Columna 2", width=15, height=5).grid(row=1, column=2)
 
+def setObjectsOnGrid(w, r, c):
+    """
+    :param w: widget (object), which will be located on grid
+    :param r: row of grid object inside of root windows
+    :param c: column of grid object inside of root windows
+    :return:
+    """
+    w.grid(row=r, column=c)
 
 
 
