@@ -11,7 +11,7 @@ def createGrahpCities(cl, dl):
     graphCities.add_nodes_from(cl)
     graphCities.add_weighted_edges_from(dl)
     return graphCities
-
+#.................................................................................
 def listCities(gc):
     """
     :param gc: graph object that represent the cities
@@ -19,20 +19,21 @@ def listCities(gc):
     """
     tmpList = []
     for i in range(1, len(gc.nodes) + 1):
-        #print(gc.nodes[i]['name'])
         tmpList.append(gc.nodes[i]['name'])
     return tmpList
-
-def listDistances(gc):
-    for i, neis in gc.adj.items():
-        for nei in neis:
-            message = "{node1:<5} {node2:>15} {distance}".format(node1 = gc.nodes[i]['name'],
-                                                    node2 = gc.nodes[nei]['name'],
-                                                    distance = neis[nei][0]['weight'])
-            print(message)
+#.................................................................................
+def matrixRoutes(gc):
+    listRoutes = []
+    for i, nd in gc.adj.items():
+        for n, j in nd.items():
+            route = [gc.nodes[i]['name'], gc.nodes[n]['name'], j[0]['weight']]
+            listRoutes.append(tuple(route))
+    return listRoutes
+# .................................................................................
 
 def getCity():
     pass
 
 def getShortestPatch():
     pass
+

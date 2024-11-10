@@ -28,37 +28,42 @@ if __name__ == '__main__':
 
     mainWindow = createMainWindow()
 
+    citiesGraph = createGrahpCities(citiesList, distancesList)
+    lc = listCities(citiesGraph)
+    mr = matrixRoutes(citiesGraph)
+
     frameTOP = implementingFrame(mainWindow, configurateGUI[0])
     frameBOTTOM = implementingFrame(mainWindow, configurateGUI[1])
     frameListCities = implementingFrame(frameTOP, configurateGUI[2])
     frameListRoute = implementingFrame(frameTOP, configurateGUI[3])
-    labelSetRoute = implementingFrame(frameBOTTOM, configurateGUI[4])
-    labelResult = implementingFrame(frameBOTTOM, configurateGUI[5])
+    frameSetRoute = implementingFrame(frameBOTTOM, configurateGUI[4])
+    frameResult = implementingFrame(frameBOTTOM, configurateGUI[5])
+    deployAListAsTable(frameListCities, lc)
+    deployAMatrixATable(frameListRoute, mr)
 
     #labelTitleCities = implementingLabel(frameListCities, configurateGUI[1])
 
-    #Spacial Distribution
-    #frameListCities.pack(side=LEFT, padx=50, pady=10)
-    #frameListRutas.pack(side=RIGHT, padx=50, pady=10)
-
+    # Spacial Distribution.................................................................
     frameTOP.pack(side=TOP, pady=10)
     frameBOTTOM.pack(side=BOTTOM, pady=10)
     frameListCities.pack(side=LEFT)
     frameListRoute.pack(side=RIGHT)
-    labelSetRoute.pack(side=LEFT)
-    labelResult.pack(side=RIGHT)
+    frameSetRoute.pack(side=LEFT)
+    frameResult.pack(side=RIGHT)
 
     #labelTitleCities.grid(row = 1, column = 1, padx=configurateGUI[0]["pdx"], pady=configurateGUI[0]["pdy"])
 
-
     mainWindow.mainloop()
 
-    #citiesGraph = createGrahpCities(citiesList, distancesList)
+    md = matrixRoutes(citiesGraph)
+    for route in md:
+        print(route)
+
+
     #l = listCities(citiesGraph)
     #print(l)
-    #deployAListOfCities(mainWindow, l)
+    #
     #listDistances(citiesGraph)
-
 
 
     
