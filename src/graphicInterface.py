@@ -1,3 +1,4 @@
+from logging.config import dictConfig
 from tkinter import *
 from tkinter import ttk
 from tkinter.ttk import Combobox
@@ -36,7 +37,8 @@ def implementingLabel(f, t, dictConf={}):
     """
     :param f: object-type Frame of Tkinter library. Represent the secundary windows
             of aplication graphic application
-    :param t: text, that will be show for label widget
+    :param t: text, that will be showed for label widget
+    :param dictConfig: dict of diferent options to custom the Label
     :return: a widget that is integrated in the main windows
     """
     labelTmp = Label(f, text=t)
@@ -45,7 +47,20 @@ def implementingLabel(f, t, dictConf={}):
                     width=dictConf.get("w", 5))
     return labelTmp
 #.................................................................................
-#...................................................................................................
+def implementinButton(f, t, dictConf={}):
+    """
+    :param f: object-type frame or widget of Tkinter library, entity which buttom will be integrated
+    :param t: text, that will be showed for Buttom widget
+    :param dictConfig: dict of diferent options to custom the buttom
+    :return: a custom buttom widget
+    """
+    buttonTmp = Button(f, text=t)
+    buttonTmp.config(activebackground=dictConf.get("abg", "#92d6fb"),
+                     bg=dictConf.get("bg", "#c2c2c2"),
+                     height=dictConf.get("h", 5),
+                     width=dictConf.get("w", 5))
+    return buttonTmp
+#.................................................................................
 def deployAListAsTable(f, l):
     """
     :param: l list-type object that contains the entries of a table

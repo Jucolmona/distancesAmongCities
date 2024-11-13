@@ -43,6 +43,8 @@ if __name__ == '__main__':
     dropDownListCities(frameSetRoute, lc)
     implementingLabel(frameSetRoute, "Destino", {"w": 15, "h": 1}).pack()
     dropDownListCities(frameSetRoute, lc)
+    implementinButton(frameSetRoute, "Calcular ruta", {"w": 15, "h": 1}).pack()
+
 
     #labelTitleCities = implementingLabel(frameListCities, configurateGUI[1])
 
