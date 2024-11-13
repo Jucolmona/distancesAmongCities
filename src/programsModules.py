@@ -1,6 +1,6 @@
 import networkx as nx
 
-def createGrahpCities(cl, dl):
+def createGrahpCities(cl:list, dl:list):
     """
     :param cl: Cities List (cl), list-like structure which contain names of cities like nodes
     :param dl: Distances List (dl), list-like structure which contains distances edges among
@@ -34,6 +34,15 @@ def matrixRoutes(gc):
 def getCity():
     pass
 
-def getShortestPatch():
-    pass
+# .................................................................................
+def getShortestPath(gc, s, t):
+    """
+    :param gc: Graph Cities, which contains the cities (nodes) and distances (edges) among them 
+    :param s: node (means source), starting node of the route
+    :param t: node (means target), node target on the route.
+    :return: A list, containing the vertices (cities) and edges (distances) that form the shortest path 
+    """
+    sp = nx.bidirectional_dijkstra(gc, s, t)
+    return sp
 
+# .................................................................................

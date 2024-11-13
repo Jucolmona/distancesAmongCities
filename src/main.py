@@ -47,7 +47,7 @@ if __name__ == '__main__':
     frameTOP.pack(side=TOP, pady=10)
     frameBOTTOM.pack(side=BOTTOM, pady=10)
     frameListCities.pack(side=LEFT)
-    frameListRoute.pack(side=RIGHT)
+    frameListRoute.pack(side=LEFT)
     frameSetRoute.pack(side=LEFT)
     frameResult.pack(side=RIGHT)
 
@@ -55,19 +55,5 @@ if __name__ == '__main__':
 
     mainWindow.mainloop()
 
-    md = matrixRoutes(citiesGraph)
-    for route in md:
-        print(route)
-
-
-    #l = listCities(citiesGraph)
-    #print(l)
-    #
-    #listDistances(citiesGraph)
-
-
-    
-    
- 
-
-
+    shRoute = getShortestPath(citiesGraph, 1, 6)
+    print(shRoute)
