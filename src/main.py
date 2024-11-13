@@ -39,6 +39,11 @@ if __name__ == '__main__':
     deployAListAsTable(frameListCities, lc)
     deployAMatrixATable(frameListRoute, mr)
 
+    implementingLabel(frameSetRoute,"Inicio", {"w":15, "h":1}).pack()
+    dropDownListCities(frameSetRoute, lc)
+    implementingLabel(frameSetRoute, "Destino", {"w": 15, "h": 1}).pack()
+    dropDownListCities(frameSetRoute, lc)
+
     #labelTitleCities = implementingLabel(frameListCities, configurateGUI[1])
 
     # Spacial Distribution.................................................................

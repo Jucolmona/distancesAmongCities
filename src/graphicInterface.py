@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import ttk
+from tkinter.ttk import Combobox
+
 import networkx as nx
 
 
@@ -55,7 +57,7 @@ def deployAListAsTable(f, l):
     head.pack(side=TOP, expand=True)
     for i in range(len(l)):
         entryCity = implementingLabel(f, l[i])
-        entryCity.pack()
+        entryCity.pack(side=TOP, fill=BOTH)
         entryCity.config(width="15", height="1")
 #...................................................................................................
 def deployAMatrixATable(f, m):
@@ -89,7 +91,15 @@ def deployAMatrixATable(f, m):
                 Label(frameTableBody, text=m[r][c], height="1", bg="#c7c8c8", width="15").grid(row=r, column=c)
 
     #frameTableBody.bind("<Configure>", lambda e: canvas.config(scrollregion=canvas.bbox("all")))
-
+#.......................................................................................................
+def dropDownListCities(f, l):
+    """
+    :param: l list-type object that contains the entries of a drop-Down List
+    :param f: object-type Frame of Tkinter library. Represent the main windows of aplication graphic application
+    :return: a drop-Down List of cities, which is set as source and target in the Shortest path algorithm
+    """
+    menuTmp = Combobox(f, state="readonly", values=l)
+    menuTmp.pack()
 #.......................................................................................................
 def setObjectsOnGrid(w, r, c):
     """
