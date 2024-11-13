@@ -36,8 +36,8 @@ if __name__ == '__main__':
     frameResult = implementingFrame(frameBOTTOM, configFrameResult)
 
     """--- Deploy a data ---"""
-    #deployAListAsTable(frameListCities, lc)
-    #deployAMatrixATable(frameListRoute, mr)
+    deployAListAsTable(frameListCities, lc)
+    deployAMatrixATable(frameListRoute, mr)
 
     #labelTitleCities = implementingLabel(frameListCities, configurateGUI[1])
 

@@ -17,40 +17,44 @@ Therefore, the next functions both add Tk widgets and change the properties of t
 instancia returned for function previusly created.
 """
 #.................................................................................
-def implementingFrame(mw:Tk, dictConf):
+def implementingFrame(mw, dictConf={}):
     """
     Implement the Frame widget of Tkinter Library along with basic options for its configuration
     :param mw: root window, where frame will be placed
-    :param options: dict of diferent options to custom the frame
+    :param dictConf: dict of diferent options to custom the frame
     :return: Custom frame placed on main window.
     """
     frameTmp = Frame(mw)
-    frameTmp.config(bg=dictConf["bg"],
-                    height=dictConf["h"],
-                    width=dictConf["w"])
+    frameTmp.config(bg=dictConf.get("bg", "#c2c2c2"),
+                    height=dictConf.get("h", 5),
+                    width=dictConf.get("w", 5))
     return frameTmp
 #.................................................................................
-#.................................................................................
-def implementingLabel(f, options:dict):
+def implementingLabel(f, t, dictConf={}):
     """
     :param f: object-type Frame of Tkinter library. Represent the secundary windows
             of aplication graphic application
+    :param t: text, that will be show for label widget
     :return: a widget that is integrated in the main windows
     """
-    labelTmp = Label(f, text="Nombre Ciudades" , height=options["h"] ,width=options["w"])
+    labelTmp = Label(f, text=t)
+    labelTmp.config(bg=dictConf.get("bg", "#c2c2c2"),
+                    height=dictConf.get("h", 5),
+                    width=dictConf.get("w", 5))
     return labelTmp
+#.................................................................................
 #...................................................................................................
-def deployAListAsTable(f, gc):
+def deployAListAsTable(f, l):
     """
+    :param: l list-type object that contains the entries of a table
     :param f: object-type Frame of Tkinter library. Represent the main windows of aplication graphic application
     :return: a view-table of cities, which is implemented the Shortest path algorithm
     """
-    head = Label(f, text="Ciudades", width="20")
+    dictConfigHead = {"h":1, "w":20}
+    head = implementingLabel(f, "Ciudades", dictConfigHead)
     head.pack(side=TOP, expand=True)
-    for i in range(1, 8):
-        entryCity = Listbox(f)
-        #entryCity.grid(row=i + 1, column=1)
-        entryCity.insert(END, gc[i - 1])
+    for i in range(len(l)):
+        entryCity = implementingLabel(f, l[i])
         entryCity.pack()
         entryCity.config(width="15", height="1")
 #...................................................................................................
@@ -60,7 +64,7 @@ def deployAMatrixATable(f, m):
     :param m: matrix which be deployed as a table on the GUI
      :return: a view-table of cities, which is implemented the Shortest path algorithm
     """
-    frameTableHead = Frame(f)
+    frameTableHead = implementingFrame(f) #Frame(f)
     frameTableHead.pack(side=TOP)
     listHead = ["INICIO", "DESTINO", "DISTANCIA"]
     for i in range(len(listHead)):
@@ -72,7 +76,7 @@ def deployAMatrixATable(f, m):
     scrollbar = Scrollbar(f, orient=VERTICAL, command=canvas.yview)
     scrollbar.pack(side=RIGHT, fill=Y)
 
-    frameTableBody = Frame(canvas)
+    frameTableBody = implementingFrame(canvas)
     canvas.create_window((0, 0), window=frameTableBody, anchor="nw")
 
     canvas['yscrollcommand'] = scrollbar.set
