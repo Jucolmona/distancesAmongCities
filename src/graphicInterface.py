@@ -17,13 +17,17 @@ Therefore, the next functions both add Tk widgets and change the properties of t
 instancia returned for function previusly created.
 """
 #.................................................................................
-def implementingFrame(mw:Tk, options:dict):
+def implementingFrame(mw:Tk, dictConf):
     """
+    Implement the Frame widget of Tkinter Library along with basic options for its configuration
     :param mw: root window, where frame will be placed
     :param options: dict of diferent options to custom the frame
     :return: Custom frame placed on main window.
     """
-    frameTmp = Frame(mw, bg = options["bgC"], height=options["h"], width=options["w"])
+    frameTmp = Frame(mw)
+    frameTmp.config(bg=dictConf["bg"],
+                    height=dictConf["h"],
+                    width=dictConf["w"])
     return frameTmp
 #.................................................................................
 #.................................................................................
@@ -62,16 +66,16 @@ def deployAMatrixATable(f, m):
     for i in range(len(listHead)):
         Label(frameTableHead, text=listHead[i], height= "1", width="15").pack(side=LEFT, expand=True)
 
-    scrollbar = Scrollbar(f, orient=VERTICAL)
-                          #, command=canvas.yview)
-    scrollbar.pack(side=RIGHT, fill=Y)
-
-    canvas = Canvas(f, yscrollcommand=scrollbar.set)
+    canvas = Canvas(f, scrollregion=(0,100,0,100))
     canvas.pack(side=LEFT, fill=BOTH, expand=True)
 
+    scrollbar = Scrollbar(f, orient=VERTICAL, command=canvas.yview)
+    scrollbar.pack(side=RIGHT, fill=Y)
 
     frameTableBody = Frame(canvas)
-    canvas.create_window((3, 3), window=frameTableBody, anchor="nw")
+    canvas.create_window((0, 0), window=frameTableBody, anchor="nw")
+
+    canvas['yscrollcommand'] = scrollbar.set
 
     for r in range(len(m)):
         for c in range(len(m[r])):

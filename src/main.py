@@ -11,35 +11,33 @@ if __name__ == '__main__':
                      (6, 7, 66), (7, 8, 133)
     ]
 
-    #configurateGUI[0] --> frameTOP
-    #configurateGUI[1] --> frameBOTTOM
-    #configurateGUI[2] --> frameListCities
-    #configurateGUI[3] --> frameListRoute
-    #configurateGUI[4] --> labelSetRoute
-    #configurateGUI[4] --> labelResult
-    configurateGUI = [
-        {"bgC":"#5dade2", "h":300, "w":950},
-        {"bgC":"#5dade2", "h":100, "w":950},
-        {"bgC": "#DAF7A6", "h": 300, "w": 300},
-        {"bgC":"#FF5733", "h":300, "w":600},
-        {"bgC": "#DAF7A6", "h": 100, "w": 300},
-        {"bgC": "#FF5733", "h": 100, "w": 600}
-    ]
-
+    """--- Creating main Windows (root windows) ---"""
     mainWindow = createMainWindow()
+
 
     citiesGraph = createGrahpCities(citiesList, distancesList)
     lc = listCities(citiesGraph)
     mr = matrixRoutes(citiesGraph)
 
-    frameTOP = implementingFrame(mainWindow, configurateGUI[0])
-    frameBOTTOM = implementingFrame(mainWindow, configurateGUI[1])
-    frameListCities = implementingFrame(frameTOP, configurateGUI[2])
-    frameListRoute = implementingFrame(frameTOP, configurateGUI[3])
-    frameSetRoute = implementingFrame(frameBOTTOM, configurateGUI[4])
-    frameResult = implementingFrame(frameBOTTOM, configurateGUI[5])
-    deployAListAsTable(frameListCities, lc)
-    deployAMatrixATable(frameListRoute, mr)
+    """----------- GUI Implementing -----------
+                    General Layout             """
+
+    configFrameTOP = {"bg":"#5dade2", "h":300, "w":950}
+    frameTOP = implementingFrame(mainWindow, configFrameTOP)
+    configFrameBOTTOM = {"bg":"#5dade2", "h":100, "w":950}
+    frameBOTTOM = implementingFrame(mainWindow, configFrameBOTTOM)
+    configFrameListCities = {"bg": "#DAF7A6", "h": 300, "w": 300}
+    frameListCities = implementingFrame(frameTOP, configFrameListCities)
+    configFrameListRoute = {"bg":"#FF5733", "h":300, "w":600}
+    frameListRoute = implementingFrame(frameTOP, configFrameListRoute)
+    configFrameSetRoute = {"bg": "#DAF7A6", "h": 100, "w": 300}
+    frameSetRoute = implementingFrame(frameBOTTOM, configFrameSetRoute)
+    configFrameResult = {"bg": "#FF5733", "h": 100, "w": 600}
+    frameResult = implementingFrame(frameBOTTOM, configFrameResult)
+
+    """--- Deploy a data ---"""
+    #deployAListAsTable(frameListCities, lc)
+    #deployAMatrixATable(frameListRoute, mr)
 
     #labelTitleCities = implementingLabel(frameListCities, configurateGUI[1])
 
