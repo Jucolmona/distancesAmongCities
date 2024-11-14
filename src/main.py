@@ -35,6 +35,7 @@ if __name__ == '__main__':
     configFrameResult = {"bg": "#FF5733", "h": 100, "w": 600}
     frameResult = implementingFrame(frameBOTTOM, configFrameResult)
 
+
     """--- Deploy a data ---"""
     deployAListAsTable(frameListCities, lc)
     deployAMatrixATable(frameListRoute, mr)
@@ -46,9 +47,7 @@ if __name__ == '__main__':
     implementinButton(frameSetRoute, "Calcular ruta", {"w": 15, "h": 1}).pack()
 
 
-    #labelTitleCities = implementingLabel(frameListCities, configurateGUI[1])
-
-    # Spacial Distribution.................................................................
+    """--- Spacial Distribution ---"""
     frameTOP.pack(side=TOP, pady=10)
     frameBOTTOM.pack(side=BOTTOM, pady=10)
     frameListCities.pack(side=LEFT)
@@ -56,9 +55,21 @@ if __name__ == '__main__':
     frameSetRoute.pack(side=LEFT)
     frameResult.pack(side=RIGHT)
 
-    #labelTitleCities.grid(row = 1, column = 1, padx=configurateGUI[0]["pdx"], pady=configurateGUI[0]["pdy"])
-
     mainWindow.mainloop()
 
     shRoute = getShortestPath(citiesGraph, 1, 6)
-    print(shRoute)
+
+    print(shRoute[1])
+    for i in range(len(shRoute[1])):
+        k = shRoute[1][i]
+        print(citiesGraph.nodes[k]['name'], k)
+        for e in citiesGraph.adjacency():
+            if k in e[1]:
+                print(e[1].get(k))
+                print(e[0])
+    print(f'Distancia total: {shRoute[0]}')
+
+    for e in citiesGraph.adjacency():
+        if 1 in e[1]:
+            print(e[1])
+
