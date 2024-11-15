@@ -35,7 +35,6 @@ if __name__ == '__main__':
     configFrameResult = {"bg": "#FF5733", "h": 100, "w": 600}
     frameResult = implementingFrame(frameBOTTOM, configFrameResult)
 
-
     """--- Deploy a data ---"""
     deployAListAsTable(frameListCities, lc)
     deployAMatrixATable(frameListRoute, mr)
@@ -59,17 +58,22 @@ if __name__ == '__main__':
 
     shRoute = getShortestPath(citiesGraph, 1, 6)
 
-    print(shRoute[1])
-    for i in range(len(shRoute[1])):
+    print(f'Lista de ruta: {shRoute[1]}')
+    for i in range(len(shRoute[1]) - 1):
         k = shRoute[1][i]
         print(citiesGraph.nodes[k]['name'], k)
-        for e in citiesGraph.adjacency():
-            if k in e[1]:
-                print(e[1].get(k))
-                print(e[0])
+        for j in list(citiesGraph.adjacency()):
+            if j[0] == k:
+                for key, value in j[1].items():
+                    if shRoute[1][i + 1] == key:
+                        print(key, value)
+
     print(f'Distancia total: {shRoute[0]}')
 
-    for e in citiesGraph.adjacency():
-        if 1 in e[1]:
-            print(e[1])
+
+    #print(list(citiesGraph.neighbors(6)))
+    #print(list(citiesGraph.nodes())[1-1])
+    #for tupla in list(citiesGraph.edges.data()):
+    #    print(tupla)
+
 

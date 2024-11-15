@@ -30,7 +30,6 @@ def matrixRoutes(gc):
             listRoutes.append(tuple(route))
     return listRoutes
 # .................................................................................
-
 def getCity():
     pass
 
@@ -43,5 +42,6 @@ def getShortestPath(gc, s, t):
     :return: A list, containing the vertices (cities) and edges (distances) that form the shortest path 
     """
     sp = nx.bidirectional_dijkstra(gc, s, t)
+    sp
     return sp # sp means "Shortest Patch"
 # .................................................................................
