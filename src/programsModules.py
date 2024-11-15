@@ -42,6 +42,21 @@ def getShortestPath(gc, s, t):
     :return: A list, containing the vertices (cities) and edges (distances) that form the shortest path 
     """
     sp = nx.bidirectional_dijkstra(gc, s, t)
-    sp
-    return sp # sp means "Shortest Patch"
+    listCities = [gc.nodes[sp[1][i]]['name'] for i in range(len(sp[1]))]
+    listDistances = []
+    for i in range(len(sp[1]) - 1):
+        k = sp[1][i]
+        for j in list(gc.adjacency()):
+            if j[0] == k:
+                for key, value in j[1].items():
+                    if sp[1][i + 1] == key:
+                        listDistances.append(value[0]['weight'])
+
+    distance = 0.0
+    listTable = [(listCities[0], distance)]
+    for d in listDistances:
+        distance += d
+        tupleTmp = tuple([listCities[listDistances.index(d) + 1], distance])
+        listTable.append(tupleTmp)
+    return listTable
 # .................................................................................
