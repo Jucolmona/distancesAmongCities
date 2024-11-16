@@ -32,8 +32,9 @@ def matrixRoutes(gc):
 # .................................................................................
 def getCities(gc, tupleString=None):
     namesCities = [gc.nodes[i]['name'] for i in range(1, len(gc.nodes) + 1)]
-    print(namesCities.index("Medellin"))
-
+    if tupleString is not None:
+        sg, tg = namesCities.index(tupleString[0]) + 1, namesCities.index(tupleString[1]) + 1
+        return sg, tg
 # .................................................................................
 def getShortestPath(gc, s, t):
     """

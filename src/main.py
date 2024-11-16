@@ -50,7 +50,6 @@ if __name__ == '__main__':
 
     """ --- Getting input data entry by user ---"""
 
-
     shRoute = getShortestPath(citiesGraph, 1, 8)
 
     """--- Spacial Distribution ---"""
@@ -65,7 +64,7 @@ if __name__ == '__main__':
     mainWindow.mainloop()
 
     print(shRoute)
-    getCities(citiesGraph)
+    print(getCities(citiesGraph, ("Medellin", "Bogota")))
 
 
 
