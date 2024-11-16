@@ -30,8 +30,9 @@ def matrixRoutes(gc):
             listRoutes.append(tuple(route))
     return listRoutes
 # .................................................................................
-def getCity():
-    pass
+def getCities(gc, tupleString=None):
+    namesCities = [gc.nodes[i]['name'] for i in range(1, len(gc.nodes) + 1)]
+    print(namesCities.index("Medellin"))
 
 # .................................................................................
 def getShortestPath(gc, s, t):
@@ -41,6 +42,7 @@ def getShortestPath(gc, s, t):
     :param t: node (means target), node target on the route.
     :return: A list, containing the vertices (cities) and edges (distances) that form the shortest path 
     """
+
     sp = nx.bidirectional_dijkstra(gc, s, t)
     listCities = [gc.nodes[sp[1][i]]['name'] for i in range(len(sp[1]))]
     listDistances = []

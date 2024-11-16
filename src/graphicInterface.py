@@ -1,10 +1,6 @@
-from logging.config import dictConfig
+import tkinter
 from tkinter import *
-from tkinter import ttk
 from tkinter.ttk import Combobox
-
-import networkx as nx
-
 
 def createMainWindow():
     """
@@ -47,19 +43,45 @@ def implementingLabel(f, t, dictConf={}):
                     width=dictConf.get("w", 5))
     return labelTmp
 #.................................................................................
-def implementinButton(f, t, dictConf={}):
+#.................................................................................
+def dropDownListCities(f, l):
+    """
+    :param: l list-type object that contains the entries of a drop-Down List
+    :param f: object-type Frame of Tkinter library. Represent the main windows of aplication graphic application
+    :return: a drop-Down List of cities, which is set as source and target in the Shortest path algorithm
+    """
+    selectedOption = tkinter.StringVar()
+    menuTmp = Combobox(f, state="readonly", values=l) #textvariable=selectedOption
+    menuTmp.pack()
+    return menuTmp
+#.................................................................................
+def getCurrentSelection(c1, c2):
+    """
+    :param c1: combobox-type object, which the information of the source patch
+    :param c2: combobox-type object, which the information of the target patch
+    :return: a tuple with the names of source city and target city
+    """
+    optionSelected1 = c1.get()
+    print(optionSelected1)
+    optionSelected2 = c2.get()
+    print(optionSelected2)
+    return (optionSelected1, optionSelected2)
+#.................................................................................
+def implementingButton(f, t, c1, c2, dictConf={}):
     """
     :param f: object-type frame or widget of Tkinter library, entity which buttom will be integrated
     :param t: text, that will be showed for Buttom widget
     :param dictConfig: dict of diferent options to custom the buttom
     :return: a custom buttom widget
     """
-    buttonTmp = Button(f, text=t)
+    buttonTmp = Button(f, text=t, command=lambda: getCurrentSelection(c1, c2))
     buttonTmp.config(activebackground=dictConf.get("abg", "#92d6fb"),
                      bg=dictConf.get("bg", "#c2c2c2"),
                      height=dictConf.get("h", 5),
                      width=dictConf.get("w", 5))
     return buttonTmp
+#.................................................................................
+
 #.................................................................................
 def deployAListAsTable(f, l):
     """
@@ -106,15 +128,6 @@ def deployAMatrixATable(f, m):
                 Label(frameTableBody, text=m[r][c], height="1", bg="#c7c8c8", width="15").grid(row=r, column=c)
 
     #frameTableBody.bind("<Configure>", lambda e: canvas.config(scrollregion=canvas.bbox("all")))
-#.......................................................................................................
-def dropDownListCities(f, l):
-    """
-    :param: l list-type object that contains the entries of a drop-Down List
-    :param f: object-type Frame of Tkinter library. Represent the main windows of aplication graphic application
-    :return: a drop-Down List of cities, which is set as source and target in the Shortest path algorithm
-    """
-    menuTmp = Combobox(f, state="readonly", values=l)
-    menuTmp.pack()
 #.......................................................................................................
 def setObjectsOnGrid(w, r, c):
     """

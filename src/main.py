@@ -14,6 +14,8 @@ if __name__ == '__main__':
     """--- Creating main Windows (root windows) ---"""
     mainWindow = createMainWindow()
 
+    """--- Creating Graph with networkx library
+           and list cities and route matrix ---"""
 
     citiesGraph = createGrahpCities(citiesList, distancesList)
     lc = listCities(citiesGraph)
@@ -39,12 +41,17 @@ if __name__ == '__main__':
     deployAListAsTable(frameListCities, lc)
     deployAMatrixATable(frameListRoute, mr)
 
+    """--- Implementing I/O user ---"""
     implementingLabel(frameSetRoute,"Inicio", {"w":15, "h":1}).pack()
-    dropDownListCities(frameSetRoute, lc)
+    source = dropDownListCities(frameSetRoute, lc)
     implementingLabel(frameSetRoute, "Destino", {"w": 15, "h": 1}).pack()
-    dropDownListCities(frameSetRoute, lc)
-    implementinButton(frameSetRoute, "Calcular ruta", {"w": 15, "h": 1}).pack()
+    target = dropDownListCities(frameSetRoute, lc)
+    implementingButton(frameSetRoute, "Calcular ruta", source, target, {"w": 15, "h": 1}).pack()
 
+    """ --- Getting input data entry by user ---"""
+
+
+    shRoute = getShortestPath(citiesGraph, 1, 8)
 
     """--- Spacial Distribution ---"""
     frameTOP.pack(side=TOP, pady=10)
@@ -54,28 +61,15 @@ if __name__ == '__main__':
     frameSetRoute.pack(side=LEFT)
     frameResult.pack(side=RIGHT)
 
+    """ --- Run GUI --- """
     mainWindow.mainloop()
 
-    shRoute = getShortestPath(citiesGraph, 1, 8)
     print(shRoute)
+    getCities(citiesGraph)
 
 
-    #print(f'Lista de ruta: {shRoute[1]}')
-    #for i in range(len(shRoute[1]) - 1):
-    #    k = shRoute[1][i]
-    #    print(citiesGraph.nodes[k]['name'], k)
-    #    for j in list(citiesGraph.adjacency()):
-    #        if j[0] == k:
-    #            for key, value in j[1].items():
-    #                if shRoute[1][i + 1] == key:
-    #                    print(key, value)
-
-    #print(f'Distancia total: {shRoute[0]}')
 
 
-    #print(list(citiesGraph.neighbors(6)))
-    #print(list(citiesGraph.nodes())[1-1])
-    #for tupla in list(citiesGraph.edges.data()):
-    #    print(tupla)
+
 
 
