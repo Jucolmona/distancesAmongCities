@@ -41,9 +41,6 @@ def getCities(gc, tupleString=None):
         sg, tg = namesCities.index(tupleString[0]) + 1, namesCities.index(tupleString[1]) + 1
         return sg, tg
 # .................................................................................
-def getSP(c1, c2):
-    return c1, c2
-# .................................................................................
 def getShortestPath(gc, s, t):
     """
     :param gc: Graph Cities, which contains the cities (nodes) and distances (edges) among them 
@@ -51,7 +48,6 @@ def getShortestPath(gc, s, t):
     :param t: node (means target), node target on the route.
     :return: A list, containing the vertices (cities) and edges (distances) that form the shortest path 
     """
-
     sp = nx.bidirectional_dijkstra(gc, s, t)
     listCities = [gc.nodes[sp[1][i]]['name'] for i in range(len(sp[1]))]
     listDistances = []
@@ -71,3 +67,9 @@ def getShortestPath(gc, s, t):
         listTable.append(tupleTmp)
     return listTable
 # .................................................................................
+def procesingData(gc, tupleRoute):
+    citiesIDs = getCities(gc, tupleRoute)
+    source = citiesIDs[0]
+    target = citiesIDs[1]
+    getShortestPath(gc, source, target)
+    print("Todo bien !!")

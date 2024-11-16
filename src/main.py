@@ -46,10 +46,10 @@ if __name__ == '__main__':
     source = dropDownListCities(frameSetRoute, lc)
     implementingLabel(frameSetRoute, "Destino", {"w": 15, "h": 1}).pack()
     target = dropDownListCities(frameSetRoute, lc)
-    implementingButton(frameSetRoute, "Calcular ruta", source, target, {"w": 15, "h": 1}).pack()
+    implementingButton(frameSetRoute, "Calcular ruta", source, target, citiesGraph, {"w": 15, "h": 1}).pack()
 
     """ --- Getting input data entry by user ---"""
-    shRoute = getShortestPath(citiesGraph, 4, 5)
+    #shRoute = getShortestPath(citiesGraph, 4, 5)
 
     """--- Spacial Distribution ---"""
     frameTOP.pack(side=TOP, pady=10)
@@ -62,8 +62,8 @@ if __name__ == '__main__':
     """ --- Run GUI --- """
     mainWindow.mainloop()
 
-    print(shRoute)
-    print(getCities(citiesGraph, ("Medellin", "Bogota")))
+    #print(shRoute)
+    #print(getCities(citiesGraph, ("Medellin", "Bogota")))
 
 
 
