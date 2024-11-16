@@ -49,8 +49,7 @@ if __name__ == '__main__':
     implementingButton(frameSetRoute, "Calcular ruta", source, target, {"w": 15, "h": 1}).pack()
 
     """ --- Getting input data entry by user ---"""
-
-    shRoute = getShortestPath(citiesGraph, 1, 8)
+    shRoute = getShortestPath(citiesGraph, 4, 5)
 
     """--- Spacial Distribution ---"""
     frameTOP.pack(side=TOP, pady=10)

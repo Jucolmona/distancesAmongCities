@@ -31,10 +31,18 @@ def matrixRoutes(gc):
     return listRoutes
 # .................................................................................
 def getCities(gc, tupleString=None):
+    """
+    :param gc:
+    :param tupleString:
+    :return:
+    """
     namesCities = [gc.nodes[i]['name'] for i in range(1, len(gc.nodes) + 1)]
     if tupleString is not None:
         sg, tg = namesCities.index(tupleString[0]) + 1, namesCities.index(tupleString[1]) + 1
         return sg, tg
+# .................................................................................
+def getSP(c1, c2):
+    return c1, c2
 # .................................................................................
 def getShortestPath(gc, s, t):
     """

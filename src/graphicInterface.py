@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import *
 from tkinter.ttk import Combobox
+import programsModules as PM
 
 def createMainWindow():
     """
@@ -43,7 +44,6 @@ def implementingLabel(f, t, dictConf={}):
                     width=dictConf.get("w", 5))
     return labelTmp
 #.................................................................................
-#.................................................................................
 def dropDownListCities(f, l):
     """
     :param: l list-type object that contains the entries of a drop-Down List
@@ -67,14 +67,25 @@ def getCurrentSelection(c1, c2):
     print(optionSelected2)
     return (optionSelected1, optionSelected2)
 #.................................................................................
-def implementingButton(f, t, c1, c2, dictConf={}):
+def dataProcesing(c1, c2):
+    """
+    :param c1: combobox-type object, which the information of the source patch
+    :param c2: combobox-type object, which the information of the target patch
+    """
+    source, target = getCurrentSelection(c1, c2)
+    PM.getSP((source, target))
+#.................................................................................
+def implementingButton(f, t, c1, c2, dataProcesing, dictConf={}):
     """
     :param f: object-type frame or widget of Tkinter library, entity which buttom will be integrated
     :param t: text, that will be showed for Buttom widget
+    :param dataProcesing: function to process the data
+    :param c1: combobox-type object, which the information of the source patch
+    :param c2: combobox-type object, which the information of the target patch
     :param dictConfig: dict of diferent options to custom the buttom
     :return: a custom buttom widget
     """
-    buttonTmp = Button(f, text=t, command=lambda: getCurrentSelection(c1, c2))
+    buttonTmp = Button(f, text=t, command=lambda: dataProcesing(c1, c2))
     buttonTmp.config(activebackground=dictConf.get("abg", "#92d6fb"),
                      bg=dictConf.get("bg", "#c2c2c2"),
                      height=dictConf.get("h", 5),
@@ -96,7 +107,7 @@ def deployAListAsTable(f, l):
         entryCity = implementingLabel(f, l[i])
         entryCity.pack(side=TOP, fill=BOTH)
         entryCity.config(width="15", height="1")
-#...................................................................................................
+#.................................................................................
 def deployAMatrixATable(f, m):
     """
     :param f: object-type Frame of Tkinter library. Represent the main windows of aplication graphic application
@@ -128,7 +139,7 @@ def deployAMatrixATable(f, m):
                 Label(frameTableBody, text=m[r][c], height="1", bg="#c7c8c8", width="15").grid(row=r, column=c)
 
     #frameTableBody.bind("<Configure>", lambda e: canvas.config(scrollregion=canvas.bbox("all")))
-#.......................................................................................................
+#.................................................................................
 def setObjectsOnGrid(w, r, c):
     """
     :param w: widget (object), which will be located on grid
@@ -137,7 +148,7 @@ def setObjectsOnGrid(w, r, c):
     :return:
     """
     w.grid(row=r, column=c)
-
+#.................................................................................
 
 
 
