@@ -93,12 +93,32 @@ def implementingButton(f, f2, t, c1, c2, gc, dictConf={}):
                      width=dictConf.get("w", 15))
     return buttonTmp
 #.................................................................................
+def deployResult(f, l):
+    frameTableHead = implementingFrame(f)
+    frameTableHead.pack(side=TOP)
+    listHead = ["CIUDAD", "DISTANCIA\nACUMULADA"]
+    for i in range(len(listHead)):
+        Label(frameTableHead, text=listHead[i], height="2", width="15").pack(side=LEFT, expand=TRUE)
 
+    canvas = Canvas(f)
+    canvas.pack(side=LEFT, fill=BOTH, expand=True)
+
+    frameTableBody = implementingFrame(canvas)
+    canvas.create_window((0, 0), window=frameTableBody, anchor="nw")
+
+    for r in range(len(l)):
+        for c in range(len(l[r])):
+            if r%2==0:
+                Label(frameTableBody, text=l[r][c], height="1", bg="#e7e9eb", width="15").grid(row=r, column=c)
+            else:
+                Label(frameTableBody, text=l[r][c], height="1", bg="#c7c8c8", width="15").grid(row=r, column=c)
+    print(l)
 #.................................................................................
 def deployAListAsTable(f, l):
     """
     :param: l list-type object that contains the entries of a table
     :param f: object-type Frame of Tkinter library. Represent the main windows of aplication graphic application
+    :param nc: represent the numbers of columns in the list (like numbers element of a tuple)
     :return: a view-table of cities, which is implemented the Shortest path algorithm
     """
     dictConfigHead = {"h":1, "w":20}
@@ -108,6 +128,7 @@ def deployAListAsTable(f, l):
         entryCity = implementingLabel(f, l[i])
         entryCity.pack(side=TOP, fill=BOTH)
         entryCity.config(width="15", height="1")
+
 #.................................................................................
 def deployAMatrixATable(f, m):
     """
@@ -141,17 +162,3 @@ def deployAMatrixATable(f, m):
 
     #frameTableBody.bind("<Configure>", lambda e: canvas.config(scrollregion=canvas.bbox("all")))
 #.................................................................................
-def setObjectsOnGrid(w, r, c):
-    """
-    :param w: widget (object), which will be located on grid
-    :param r: row of grid object inside of root windows
-    :param c: column of grid object inside of root windows
-    :return:
-    """
-    w.grid(row=r, column=c)
-#.................................................................................
-
-
-
-
-

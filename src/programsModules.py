@@ -77,4 +77,4 @@ def procesingData(f2, gc, tupleRoute):
     source = citiesIDs[0]
     target = citiesIDs[1]
     listSP = getShortestPath(gc, source, target)
-    deployAListAsTable(f2, listSP)
+    GUI.deployResult(f2, listSP)

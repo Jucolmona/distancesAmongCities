@@ -24,17 +24,17 @@ if __name__ == '__main__':
     """----------- GUI Implementing -----------
                     General Layout             """
 
-    configFrameTOP = {"bg":"#5dade2", "h":300, "w":950}
+    configFrameTOP = {"bg":"#657680", "h":300, "w":950}
     frameTOP = implementingFrame(mainWindow, configFrameTOP)
-    configFrameBOTTOM = {"bg":"#5dade2", "h":100, "w":950}
+    configFrameBOTTOM = {"bg":"#657680", "h":100, "w":950}
     frameBOTTOM = implementingFrame(mainWindow, configFrameBOTTOM)
-    configFrameListCities = {"bg": "#DAF7A6", "h": 300, "w": 300}
+    configFrameListCities = {"bg": "#657680", "h": 300, "w": 300}
     frameListCities = implementingFrame(frameTOP, configFrameListCities)
-    configFrameListRoute = {"bg":"#FF5733", "h":300, "w":600}
+    configFrameListRoute = {"bg":"#657680", "h":300, "w":600}
     frameListRoute = implementingFrame(frameTOP, configFrameListRoute)
-    configFrameSetRoute = {"bg": "#DAF7A6", "h": 100, "w": 300}
+    configFrameSetRoute = {"bg": "#657680", "h": 100, "w": 300}
     frameSetRoute = implementingFrame(frameBOTTOM, configFrameSetRoute)
-    configFrameResult = {"bg": "#FF5733", "h": 100, "w": 600}
+    configFrameResult = {"bg": "#657680", "h": 100, "w": 600}
     frameResult = implementingFrame(frameBOTTOM, configFrameResult)
 
     """--- Deploy a data ---"""
@@ -47,9 +47,6 @@ if __name__ == '__main__':
     implementingLabel(frameSetRoute, "Destino", {"w": 15, "h": 1}).pack()
     target = dropDownListCities(frameSetRoute, lc)
     implementingButton(frameSetRoute, frameResult, "Calcular ruta", source, target, citiesGraph, {"w": 15, "h": 1}).pack()
-
-    """ --- Getting input data entry by user ---"""
-    #shRoute = getShortestPath(citiesGraph, 4, 5)
 
     """--- Spacial Distribution ---"""
     frameTOP.pack(side=TOP, pady=10)
