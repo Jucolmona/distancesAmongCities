@@ -1,4 +1,7 @@
 import networkx as nx
+import graphicInterface as GUI
+from src.graphicInterface import deployAListAsTable
+
 
 def createGrahpCities(cl:list, dl:list):
     """
@@ -67,9 +70,11 @@ def getShortestPath(gc, s, t):
         listTable.append(tupleTmp)
     return listTable
 # .................................................................................
-def procesingData(gc, tupleRoute):
+def procesingData(f2, gc, tupleRoute):
     citiesIDs = getCities(gc, tupleRoute)
     source = citiesIDs[0]
     target = citiesIDs[1]
-    getShortestPath(gc, source, target)
+    listSP = getShortestPath(gc, source, target)
+    deployAListAsTable(f2, listSP)
     print("Todo bien !!")
+    print(listSP)

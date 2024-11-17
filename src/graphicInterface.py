@@ -67,15 +67,16 @@ def getCurrentSelection(c1, c2):
     print(optionSelected2)
     return (optionSelected1, optionSelected2)
 #.................................................................................
-def dataProcesing(c1, c2):
+def dataProcesing(f2, gc, c1, c2):
     """
     :param c1: combobox-type object, which the information of the source patch
     :param c2: combobox-type object, which the information of the target patch
     """
     source, target = getCurrentSelection(c1, c2)
-    PM.procesingData(PM.gc, (source, target))
+    PM.procesingData(f2, gc, (source, target))
 #.................................................................................
-def implementingButton(f, t, c1, c2, gc, dataProcesing, dictConf={}):
+def implementingButton(f, f2, t, c1, c2, gc, dictConf={}):
+    #dataProcesing
     """
     :param f: object-type frame or widget of Tkinter library, entity which buttom will be integrated
     :param t: text, that will be showed for Buttom widget
@@ -85,7 +86,7 @@ def implementingButton(f, t, c1, c2, gc, dataProcesing, dictConf={}):
     :param dictConfig: dict of diferent options to custom the buttom
     :return: a custom buttom widget
     """
-    buttonTmp = Button(f, text=t, command=lambda: dataProcesing(gc, c1, c2))
+    buttonTmp = Button(f, text=t, command=lambda: dataProcesing(f2, gc, c1, c2))
     buttonTmp.config(activebackground=dictConf.get("abg", "#92d6fb"),
                      bg=dictConf.get("bg", "#c2c2c2"),
                      height=dictConf.get("h", 1),
