@@ -94,24 +94,30 @@ def implementingButton(f, f2, t, c1, c2, gc, dictConf={}):
     return buttonTmp
 #.................................................................................
 def deployResult(f, l):
-    frameTableHead = implementingFrame(f)
-    frameTableHead.pack(side=TOP)
+    canvasHead = Canvas(f, width=379, height=50)
+    canvasHead.pack(fill="x")
+
+    frameTableHead = implementingFrame(canvasHead)  # Frame(f)
+    canvasHead.create_window((0, 0), window=frameTableHead, anchor='nw')
     listHead = ["CIUDAD", "DISTANCIA\nACUMULADA"]
+
     for i in range(len(listHead)):
-        Label(frameTableHead, text=listHead[i], height="2", width="15").pack(side=LEFT, expand=TRUE)
+        Label(frameTableHead, text=listHead[i],
+              height=0,
+              width=25).pack(side=LEFT)
 
-    canvas = Canvas(f)
-    canvas.pack(side=LEFT, fill=BOTH, expand=True)
+    canvasBody = Canvas(f)
+    canvasBody.pack()
 
-    frameTableBody = implementingFrame(canvas)
-    canvas.create_window((0, 0), window=frameTableBody, anchor="nw")
+    frameTableBody = implementingFrame(canvasBody)
+    canvasBody.create_window((0, 20), window=frameTableBody, anchor="nw")
 
     for r in range(len(l)):
         for c in range(len(l[r])):
             if r%2==0:
-                Label(frameTableBody, text=l[r][c], height="1", bg="#e7e9eb", width="15").grid(row=r, column=c)
+                Label(frameTableBody, text=l[r][c], height=1, bg="#e7e9eb", width=25).grid(row=r, column=c)
             else:
-                Label(frameTableBody, text=l[r][c], height="1", bg="#c7c8c8", width="15").grid(row=r, column=c)
+                Label(frameTableBody, text=l[r][c], height=1, bg="#c7c8c8", width=25).grid(row=r, column=c)
     print(l)
 #.................................................................................
 def deployAListAsTable(f, l):
@@ -121,13 +127,27 @@ def deployAListAsTable(f, l):
     :param nc: represent the numbers of columns in the list (like numbers element of a tuple)
     :return: a view-table of cities, which is implemented the Shortest path algorithm
     """
-    dictConfigHead = {"h":1, "w":20}
-    head = implementingLabel(f, "Ciudades", dictConfigHead)
-    head.pack(side=TOP, expand=True)
-    for i in range(len(l)):
-        entryCity = implementingLabel(f, l[i])
-        entryCity.pack(side=TOP, fill=BOTH)
-        entryCity.config(width="15", height="1")
+    canvas = Canvas(f)
+    canvas.pack(fill = X)
+
+    frameTableHead = implementingFrame(canvas)
+    canvas.create_window((0, 10), window=frameTableHead, anchor='nw')
+
+    frameTableBody = implementingFrame(canvas)
+    canvas.create_window((0, 50), window=frameTableBody, anchor="nw")
+
+    Label(frameTableHead, text="CIUDAD",
+          height=2,
+          width=50,
+          anchor='center',
+          padx=5,
+          pady=5).grid(row=0, column=1)
+
+    for i in range(1, len(l)):
+        if i % 2 == 0:
+            Label(frameTableBody, text=l[i], height=1, bg="#e7e9eb", width=50).grid(row=i, column=1)
+        else:
+            Label(frameTableBody, text=l[i], height=1, bg="#c7c8c8", width=50).grid(row=i, column=1)
 
 #.................................................................................
 def deployAMatrixATable(f, m):
@@ -136,22 +156,28 @@ def deployAMatrixATable(f, m):
     :param m: matrix which be deployed as a table on the GUI
      :return: a view-table of cities, which is implemented the Shortest path algorithm
     """
-    frameTableHead = implementingFrame(f) #Frame(f)
-    frameTableHead.pack(side=TOP)
+    canvasHead = Canvas(f, width=400, height=30)
+    canvasHead.pack(fill = X)
+
+    frameTableHead = implementingFrame(canvasHead) #Frame(f)
+    canvasHead.create_window((0, 0), window=frameTableHead, anchor='nw')
     listHead = ["INICIO", "DESTINO", "DISTANCIA"]
     for i in range(len(listHead)):
-        Label(frameTableHead, text=listHead[i], height= "1", width="15").pack(side=LEFT, expand=True)
+        Label(frameTableHead,
+              text=listHead[i],
+              height= 0,
+              width=15).pack(side=LEFT)
 
-    canvas = Canvas(f, scrollregion=(0,100,0,100))
-    canvas.pack(side=LEFT, fill=BOTH, expand=True)
+    canvasBody = Canvas(f, scrollregion=(0, 100, 100, 0))
+    canvasBody.pack(side=LEFT)
 
-    scrollbar = Scrollbar(f, orient=VERTICAL, command=canvas.yview)
+    scrollbar = Scrollbar(f, orient=VERTICAL, command=canvasBody.yview)
     scrollbar.pack(side=RIGHT, fill=Y)
 
-    frameTableBody = implementingFrame(canvas)
-    canvas.create_window((0, 0), window=frameTableBody, anchor="nw")
+    frameTableBody = implementingFrame(canvasBody)
+    canvasBody.create_window((0, 0), window=frameTableBody, anchor="nw")
 
-    canvas['yscrollcommand'] = scrollbar.set
+    canvasBody['yscrollcommand'] = scrollbar.set
 
     for r in range(len(m)):
         for c in range(len(m[r])):
@@ -159,6 +185,4 @@ def deployAMatrixATable(f, m):
                 Label(frameTableBody, text=m[r][c], height="1", bg="#e7e9eb", width="15").grid(row=r, column=c)
             else:
                 Label(frameTableBody, text=m[r][c], height="1", bg="#c7c8c8", width="15").grid(row=r, column=c)
-
-    #frameTableBody.bind("<Configure>", lambda e: canvas.config(scrollregion=canvas.bbox("all")))
 #.................................................................................

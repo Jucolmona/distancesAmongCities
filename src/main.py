@@ -24,37 +24,39 @@ if __name__ == '__main__':
     """----------- GUI Implementing -----------
                     General Layout             """
 
-    configFrameTOP = {"bg":"#657680", "h":300, "w":950}
-    frameTOP = implementingFrame(mainWindow, configFrameTOP)
-    configFrameBOTTOM = {"bg":"#657680", "h":100, "w":950}
-    frameBOTTOM = implementingFrame(mainWindow, configFrameBOTTOM)
-    configFrameListCities = {"bg": "#657680", "h": 300, "w": 300}
-    frameListCities = implementingFrame(frameTOP, configFrameListCities)
-    configFrameListRoute = {"bg":"#657680", "h":300, "w":600}
-    frameListRoute = implementingFrame(frameTOP, configFrameListRoute)
-    configFrameSetRoute = {"bg": "#657680", "h": 100, "w": 300}
-    frameSetRoute = implementingFrame(frameBOTTOM, configFrameSetRoute)
-    configFrameResult = {"bg": "#657680", "h": 100, "w": 600}
-    frameResult = implementingFrame(frameBOTTOM, configFrameResult)
+    configFrameTOP = {"bg":"#657680", "h":350, "w":900}
+    frameTOP = implementingFrame(mainWindow, {**configFrameTOP, "highlightbackground": "#444", "highlightthickness": 2})
+    configFrameBOTTOM = {"bg":"#657680", "h":150, "w":900}
+    frameBOTTOM = implementingFrame(mainWindow, {**configFrameBOTTOM, "highlightbackground": "#444", "highlightthickness": 2})
+    configFrameListCities = {"bg": "#657680", "h": 350, "w": 450}
+    frameListCities = implementingFrame(frameTOP, {**configFrameListCities, "highlightbackground": "#444", "highlightthickness": 2})
+    configFrameListRoute = {"bg":"#657680", "h":350, "w":450}
+    frameListRoute = implementingFrame(frameTOP, {**configFrameListRoute, "highlightbackground": "#444", "highlightthickness": 2})
+    configFrameSetRoute = {"bg": "#657680", "h": 150, "w": 450}
+    frameSetRoute = implementingFrame(frameBOTTOM, {**configFrameSetRoute, "highlightbackground": "#444", "highlightthickness": 2})
+    configFrameResult = {"bg": "#657680", "h": 150, "w": 450}
+    frameResult = implementingFrame(frameBOTTOM, {**configFrameResult, "highlightbackground": "#444", "highlightthickness": 2})
 
     """--- Deploy a data ---"""
     deployAListAsTable(frameListCities, lc)
     deployAMatrixATable(frameListRoute, mr)
 
     """--- Implementing I/O user ---"""
-    implementingLabel(frameSetRoute,"Inicio", {"w":15, "h":1}).pack()
+    implementingLabel(frameSetRoute,"Inicio", {"w":5, "h":1}).pack(side=TOP, fill=BOTH, expand=True, pady=5)  #
     source = dropDownListCities(frameSetRoute, lc)
-    implementingLabel(frameSetRoute, "Destino", {"w": 15, "h": 1}).pack()
+    implementingLabel(frameSetRoute, "Destino", {"w":5, "h":1}).pack(side=TOP, fill=BOTH, expand=True, pady=5)
     target = dropDownListCities(frameSetRoute, lc)
-    implementingButton(frameSetRoute, frameResult, "Calcular ruta", source, target, citiesGraph, {"w": 15, "h": 1}).pack()
+    implementingButton(frameSetRoute, frameResult, "Calcular ruta", source, target, citiesGraph, {"w": 0, "h": 1}).pack()
 
     """--- Spacial Distribution ---"""
-    frameTOP.pack(side=TOP, pady=10)
-    frameBOTTOM.pack(side=BOTTOM, pady=10)
-    frameListCities.pack(side=LEFT)
-    frameListRoute.pack(side=LEFT)
-    frameSetRoute.pack(side=LEFT)
-    frameResult.pack(side=RIGHT)
+    """--- Main Windows ---"""
+    frameTOP.grid(row = 0, column = 1, padx=10, pady=10)
+    frameBOTTOM.grid(row = 1, column = 1, padx=10, pady=10)
+    """--- Frames, Childrens ---"""
+    frameListCities.grid(row = 0, column = 1, padx=10, pady=10)
+    frameListRoute.grid(row = 0, column = 2, padx=10, pady=10)
+    frameSetRoute.grid(row = 0, column = 1, padx=10, pady=10)
+    frameResult.grid(row = 0, column = 2, padx=10, pady=10)
 
     """ --- Run GUI --- """
     mainWindow.mainloop()
