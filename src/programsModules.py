@@ -71,10 +71,10 @@ def getShortestPath(gc, s, t):
     return listTable
 # .................................................................................
 def procesingData(f2, gc, tupleRoute):
+    for widget in f2.winfo_children():
+        widget.destroy()
     citiesIDs = getCities(gc, tupleRoute)
     source = citiesIDs[0]
     target = citiesIDs[1]
     listSP = getShortestPath(gc, source, target)
     deployAListAsTable(f2, listSP)
-    print("Todo bien !!")
-    print(listSP)
