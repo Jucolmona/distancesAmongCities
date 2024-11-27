@@ -1,3 +1,7 @@
+"""
+@author: Juan Camilo Mona Lujan
+"""
+
 import networkx as nx
 import graphicInterface as GUI
 from src.graphicInterface import deployAListAsTable
