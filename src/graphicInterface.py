@@ -1,3 +1,7 @@
+"""
+@Author: Juan Camilo Mona Lujan
+"""
+
 import tkinter
 from tkinter import *
 from tkinter.ttk import Combobox
